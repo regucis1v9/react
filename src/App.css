@@ -1,0 +1,63 @@
+*{
+  padding:0;
+  margin:0;
+}
+
+.main{
+  background-color: #282c34;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 8vmin);
+  color: white;
+}
+.box{
+  margin-top:15px;
+  background-color: #61dafbaa;
+  width:80vw;
+  max-width: 600px;
+  height:70vh;
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.36) 0px -12px 30px, rgba(0, 0, 0, 0.36) 0px 4px 6px, rgba(0, 0, 0, 0.36) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.input{
+  border:none;
+  border-bottom: solid #282c34 2px;
+  background-color: transparent;
+  outline: none;
+  font-size:calc(10px + 4vmin);
+  width:65vw;
+  max-width: 400px;
+  min-width: 200px;
+}
+.inputBox{
+  width:300px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.errorMsg{
+  height:30px;
+  color:#282c34;
+  font-size: 20px;
+  width:65vw;
+  max-width: 400px;
+  min-width: 200px;
+}
+.submit{
+  height:50px;
+  width:200px;
+  background-color: #282c34;
+  border:none;
+  border-radius: 10px;
+  cursor:pointer;
+  color:white;
+  font-size:calc(10px + 1vmin) ;
+}
