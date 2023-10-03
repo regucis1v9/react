@@ -14,13 +14,11 @@ class DataHandler extends DB {
     public function processData() {
         $decodedData = json_decode($this->rawData, true);
 
-        if ($decodedData !== null && isset($decodedData['title'], $decodedData['description'], $decodedData['date'])) {
-            $title = $decodedData['title'];
-            $description = $decodedData['description'];
-            $date = $decodedData['date'];
+        if ($decodedData !== null && isset($decodedData['id'])) {
+            $id = $decodedData['id'];
 
 
-            $sql = "INSERT INTO `tasks`(`title`, `description`, `due_date`, `status`) VALUES ('$title','$description','$date','no')";
+            $sql = "DELETE FROM `tasks` WHERE `id` = $id";
 
             $result = $this->conn->query($sql);
 
@@ -30,7 +28,7 @@ class DataHandler extends DB {
                 echo json_encode(["message" => "Error: " . $this->conn->error]);
             }
         } else {
-            echo json_encode(["message" => "Record inserted successfully"]);
+
         }
     }
 }

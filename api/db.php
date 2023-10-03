@@ -17,8 +17,9 @@ class DB {
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }else{
-
+            // echo "Connection success";
         }
     }
     
 }
+$db = new DB;
