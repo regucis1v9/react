@@ -1,8 +1,6 @@
 import React from 'react';
 import '../css/App.css';
 import Input from './input';
-// import { handleFormData } from '../functions/sendTask';
-// import { sendError } from '../functions/sendError';
 
 function Add() {
 
@@ -14,7 +12,7 @@ function Add() {
     };
   
     try {
-      const response = await fetch('http://localhost/api/postData.php', {
+      const response = await fetch('http://localhost/regnars/api/postData.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,6 +24,12 @@ function Add() {
         // Request was successful
         const result = await response.json();
         console.log(result);
+        let title = document.getElementById("title");
+        title.value = "";
+        let description = document.getElementById("description");
+        description.value = "";
+        let date = document.getElementById("date");
+        date.value = "";
       } else {
         // Handle errors here
         console.error('Request failed');
@@ -35,20 +39,6 @@ function Add() {
     }
   };
 
-  // const handleSubmit = () => {
-
-    // const formData = {
-    //   title: document.getElementById('title').value,
-    //   description: document.getElementById('description').value,
-    //   date: document.getElementById('date').value,
-        
-    // };
-  //   if(formData.title != "" && formData.description != "" && formData.date != ""){
-  //     handleFormData(formData);
-  //   }else{
-  //     sendError(formData);
-  //   }
-  // };
 
   return (
     <div className="main">

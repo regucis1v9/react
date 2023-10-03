@@ -78,6 +78,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   border-radius: 10px;
+  align-items: center;
 }
 .taskTitle{
   color:#282c34;
@@ -98,4 +99,7 @@
   font-size:calc(20px + 0.5vmin) ;
   text-align: center;
   width:100%; 
+}
+a{
+  text-decoration: none;
 }
