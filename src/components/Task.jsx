@@ -36,7 +36,7 @@ function Task() {
 
       if (response.ok) {
         // Handle a successful delete operation here, e.g., update UI
-        window.location.href = 'http://localhost:3000';
+        window.location.href = 'http://localhost:3000/';
       } else {
         // Handle errors here
         console.error('Request failed');
@@ -66,6 +66,7 @@ function Task() {
       console.log(task)
       if (response.ok) {
         // Request was successful
+        window.location.href = 'http://localhost:3000/';
         const result = await response.json();
         console.log(result);
       } else {
