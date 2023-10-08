@@ -4,13 +4,36 @@ import Input from './input';
 
 function Add() {
 
-  const sendDataToPHP = async (formData) => {
+  const sendDataToPHP = async () => {
     const data = {
       title: document.getElementById('title').value,
       description: document.getElementById('description').value,
       date: document.getElementById('date').value,
     };
-  
+    let titleError = document.getElementById("titleError");
+    let descriptionError = document.getElementById("descriptionError");
+    let dateError = document.getElementById("dateError");
+    
+    if(data.title != ''){
+      titleError.textContent = "";
+    }else{
+      titleError.textContent = "Fill out this field";
+    }
+    if(data.description != ''){
+      descriptionError.textContent = "";
+    }else{
+      descriptionError.textContent = "Fill out this field";
+    }
+    if(data.date != ''){
+      dateError.textContent = "";
+    }else{
+      dateError.textContent = "Fill out this field";
+      const today = new Date()
+      const input = new Date(data.date)
+      console.log(today)
+      console.log(input)
+    }
+    if(data.title != '' && data.description != ''&& data.date != ''){
     try {
       const response = await fetch('http://localhost/regnars/api/postData.php', {
         method: 'POST',
@@ -38,7 +61,7 @@ function Add() {
       console.error('An error occurred:', error);
     }
   };
-
+}
 
   return (
     <div className="main">
