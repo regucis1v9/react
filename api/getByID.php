@@ -5,8 +5,8 @@ header('Content-Type: application/json');
 
 class sendData extends DB {
     public function selectTask() {
-
-        $sql = "SELECT * FROM `tasks` where id = 24";
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM `tasks` where id = $id";
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {
