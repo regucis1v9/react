@@ -20,12 +20,11 @@ function Home(){
       };
     
       try {
-        const response = await fetch('http://localhost/regnars/api/deleteTask.php', {
+        const response = await fetch(`http://localhost/regnars/api/deleteTask.php?id=${id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
         });
     
         if (response.ok) {
