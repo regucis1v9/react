@@ -30,10 +30,7 @@ function Add() {
     // Check if date is empty
     if (dateInput !== '') {
       const today = new Date();
-      today.setHours(0, 0, 0, 0); // Set time to midnight (00:00:00)
-      
       const inputDate = new Date(dateInput);
-      inputDate.setHours(0, 0, 0, 0); // Set time to midnight (00:00:00)
 
       if (inputDate >= today) {
         dateError.textContent = '';
@@ -55,8 +52,8 @@ function Add() {
         description,
         date: dateInput,
       };
-      if(title != '' && description != '' && dateInput != ''){
-            const response = await fetch('http://localhost/regnars/api/postData.php', {
+
+      const response = await fetch('http://localhost/regnars/api/postData.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,9 +74,7 @@ function Add() {
       } else {
         // Handle errors here
         console.error('Request failed');
-      }  
       }
-
     } catch (error) {
       console.error('An error occurred:', error);
     }

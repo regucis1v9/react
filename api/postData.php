@@ -15,9 +15,9 @@ class DataHandler extends DB {
         $decodedData = json_decode($this->rawData, true);
 
         if ($decodedData !== null && isset($decodedData['title'], $decodedData['description'], $decodedData['date'])) {
-            $title = $decodedData['title'];
-            $description = $decodedData['description'];
-            $date = $decodedData['date'];
+            $title = strip_tags($decodedData['title']);
+            $description = strip_tags($decodedData['description']);
+            $date = strip_tags($decodedData['date']);
 
 
             $sql = "INSERT INTO `tasks`(`title`, `description`, `due_date`, `status`) VALUES ('$title','$description','$date','no')";
@@ -30,7 +30,7 @@ class DataHandler extends DB {
                 echo json_encode(["message" => "Error: " . $this->conn->error]);
             }
         } else {
-            echo json_encode(["message" => "Record inserted successfully"]);
+            echo json_encode(["message" => "Record not inserted successfully"]);
         }
     }
 }

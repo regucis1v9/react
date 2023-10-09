@@ -9,7 +9,7 @@ function Home(){
     const [totalPages, setTotalPages] = useState(1); 
 
     useEffect(() => {
-        fetch('http://localhost/regnars/api/get.php')
+        fetch('http://localhost/regnars/api/function.php')
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.log('Error fetching data:', error))

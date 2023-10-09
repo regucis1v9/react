@@ -15,7 +15,6 @@ function Task() {
       .then((response) => response.json())
       .then((data) => {
         const taskData = data[0] || {}; // Ensure we have valid data
-        console.log(taskData)
         setTask({
           title: taskData.title || '',
           description: taskData.description || '',
@@ -23,11 +22,7 @@ function Task() {
           status: taskData.status || 'no',
         });
       })
-      .catch((error) => {
-        console.log('Error fetching data:', error);
-        // Redirect to localhost:3000 in case of an error
-        window.location.href = 'http://localhost:3000/';
-      });
+      .catch((error) => console.log('Error fetching data:', error));
   }, [id]);
 
   async function deleteTask() {
@@ -40,8 +35,10 @@ function Task() {
     });
 
       if (response.ok) {
+        // Handle a successful delete operation here, e.g., update UI
         window.location.href = 'http://localhost:3000/';
       } else {
+        // Handle errors here
         console.error('Request failed');
       }
     } catch (error) {
