@@ -4,15 +4,12 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header('Content-Type: application/json');
 
 class DataHandler extends DB {
-    private $rawData;
 
     public function __construct() {
         parent::__construct();
-        $this->rawData = file_get_contents('php://input');
     }
 
     public function processData() {
-        $decodedData = json_decode($this->rawData, true);
 
             $id = $_GET['id'];
 
@@ -22,7 +19,7 @@ class DataHandler extends DB {
             $result = $this->conn->query($sql);
 
             if ($result === true) {
-                echo json_encode(["message" => "Record inserted successfully"]);
+                echo json_encode(["message" => "Record deleted successfully"]);
             } else {
                 echo json_encode(["message" => "Error: " . $this->conn->error]);
             }

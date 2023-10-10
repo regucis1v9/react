@@ -5,26 +5,35 @@ import Input from './input';
 function Add() {
 
   const sendDataToPHP = async () => {
-    const title = document.getElementById('title').value;
-    const description = document.getElementById('description').value;
-    const dateInput = document.getElementById('date').value;
+    let title = document.getElementById('title').value;
+    let description = document.getElementById('description').value;
+    let dateInput = document.getElementById('date').value;
 
     let titleError = document.getElementById('titleError');
     let descriptionError = document.getElementById('descriptionError');
     let dateError = document.getElementById('dateError');
 
-    // Check if title is empty
-    if (title !== '') {
-      titleError.textContent = '';
-    } else {
+    // Function to check for HTML-like tags
+    const containsHTMLTags = (text) => /<.*>/g.test(text);
+
+    // Check if title is empty or contains HTML tags
+    if (title.trim() === '') {
       titleError.textContent = 'Fill out this field';
+    } else if (containsHTMLTags(title)) {
+      titleError.textContent = 'Title cannot contain HTML tags';
+      title = ""
+    } else {
+      titleError.textContent = '';
     }
 
-    // Check if description is empty
-    if (description !== '') {
-      descriptionError.textContent = '';
-    } else {
+    // Check if description is empty or contains HTML tags
+    if (description.trim() === '') {
       descriptionError.textContent = 'Fill out this field';
+    } else if (containsHTMLTags(description)) {
+      descriptionError.textContent = 'Description cannot contain HTML tags';
+      description = ""
+    } else {
+      descriptionError.textContent = '';
     }
 
     // Check if date is empty
@@ -50,40 +59,41 @@ function Add() {
 
     // Continue with the rest of your code to send data if all validations pass
     try {
-      const data = {
-        title,
-        description,
-        date: dateInput,
-      };
-      if(title != '' && description != '' && dateInput != ''){
-            const response = await fetch('http://localhost/regnars/api/postData.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      if (title !== '' && description !== '' && dateInput !== '') {
+        const data = {
+          title,
+          description,
+          date: dateInput,
+        };
+        
+        const response = await fetch('http://localhost/regnars/api/postData.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
 
-      if (response.ok) {
-        // Request was successful
-        const result = await response.json();
-        console.log(result);
-        let title = document.getElementById('title');
-        title.value = '';
-        let description = document.getElementById('description');
-        description.value = '';
-        let date = document.getElementById('date');
-        date.value = '';
-      } else {
-        // Handle errors here
-        console.error('Request failed');
-      }  
+        if (response.ok) {
+          // Request was successful
+          const result = await response.json();
+          console.log(result);
+          let title = document.getElementById('title');
+          title.value = '';
+          let description = document.getElementById('description');
+          description.value = '';
+          let date = document.getElementById('date');
+          date.value = '';
+        } else {
+          // Handle errors here
+          console.error('Request failed');
+        }
       }
-
     } catch (error) {
       console.error('An error occurred:', error);
     }
-  };
+};
+
 
   return (
     <div className="main">

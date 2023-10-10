@@ -4,7 +4,7 @@ function Task() {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const id = urlSearchParams.get('id');
 
-  const [task, setTask] = useState({
+  let [task, setTask] = useState({
     description: '',
     dueDate: '',
     status: 'no', // Default status
@@ -14,7 +14,7 @@ function Task() {
     fetch(`http://localhost/regnars/api/getByID.php?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
-        const taskData = data[0] || {}; // Ensure we have valid data
+        let taskData = data[0] || {}; // Ensure we have valid data
         console.log(taskData)
         setTask({
           title: taskData.title || '',
@@ -69,7 +69,6 @@ function Task() {
       console.log(task)
       if (response.ok) {
         // Request was successful
-        window.location.href = 'http://localhost:3000/';
         const result = await response.json();
         console.log(result);
       } else {
@@ -86,7 +85,11 @@ function Task() {
       <div className="taskContainer">
         <div className="title">{task.title}</div>
         <div className='width100'>
-          <textarea className="desc" name="description" value={task.description} onChange={handleInputChange}></textarea>
+          <div className='descriptionContainer'>
+            <textarea className="desc" name="description" value={task.description} onChange={handleInputChange}></textarea>     
+            <p className='editError' id="editError"></p>      
+          </div>
+
           <div className="side">
             <div className="status">
               <div className='checkBox'>
