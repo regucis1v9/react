@@ -4,6 +4,8 @@ import {
   Add,
   Home,
   Task,
+  Login,
+  Register,
   Header
 } from "./components"
 import {BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
@@ -18,6 +20,8 @@ root.render(
         <Route path="/" element={ <Home/>}/>
         <Route path="/add" element={ <Add/>}/> 
         <Route path="/task" element={ <Task/>}/> 
+        <Route path="/login" element={ <Login/>}/> 
+        <Route path="/register" element={ <Register/>}/> 
     </Routes>
     </div>
   </Router>

@@ -17,7 +17,7 @@ function Header() {
         </a>
       </div>
       <div className="loginButtonBox">
-        <a className="headerButton" href="">
+        <a className="headerButton" href="http://localhost:3000/login">
           Login
         </a>
       </div>

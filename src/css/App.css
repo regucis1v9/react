@@ -295,4 +295,45 @@ textarea{
 }
 .editError{
   font-size:20px;
+  margin-top:5px
+}
+.overlay{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  height:100vh;
+  width:100vw;
+  background-color: #21242b8c;
+}
+.success{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  height:200px;
+  width:300px;
+  background-color: #61dafb;
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color:#21242b
+}
+.successText{
+  width:100%;
+  text-align: center;
+  font-size: 40px;
+}
+.closeButton{
+  background-color: #dd3333;
+  border:none;
+  color:white;
+  width:80px;
+  height: 30px;
+  border-radius: 5px;
+}
+.none{
+  display:none;
 }

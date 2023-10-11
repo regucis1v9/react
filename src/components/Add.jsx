@@ -4,6 +4,12 @@ import Input from './input';
 
 function Add() {
 
+  async function closeAlert(){
+    const overlay = document.getElementById('overlay');
+    overlay.classList.toggle('none');
+    const alert = document.getElementById('alert');
+    alert.classList.toggle('none');
+  }
   const sendDataToPHP = async () => {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
@@ -48,8 +54,6 @@ function Add() {
         dateError.textContent = '';
       } else {
         dateError.textContent = 'Date must be greater than or equal to today';
-        console.log(today);
-        console.log(inputDate);
         return; // Stop further processing if the date is invalid
       }
     } else {
@@ -84,6 +88,10 @@ function Add() {
           description.value = '';
           let date = document.getElementById('date');
           date.value = '';
+          const overlay = document.getElementById('overlay');
+          overlay.classList.toggle('none');
+          const alert = document.getElementById('alert');
+          alert.classList.toggle('none');
         } else {
           // Handle errors here
           console.error('Request failed');
@@ -97,6 +105,11 @@ function Add() {
 
   return (
     <div className="main">
+      <div className="overlay none" id="overlay"></div>
+      <div className="success none" id="alert">
+        <div className="successText">Task created successfuly</div>
+        <button className='closeButton' onClick={closeAlert}>CLOSE</button>
+      </div>
       Task creation
       <form className="box">
         <Input type="text" id="title" placeholder="Title"/>
