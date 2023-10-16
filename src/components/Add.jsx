@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/App.css';
-import Input from './input';
 
 function Add() {
+
 
   async function closeAlert(){
     const overlay = document.getElementById('overlay');
@@ -69,8 +69,11 @@ function Add() {
           description,
           date: dateInput,
         };
-        
-        const response = await fetch('http://localhost/regnars/api/postData.php', {
+
+        const role = localStorage.getItem('role');
+        const id = localStorage.getItem('id');
+
+        const response = await fetch(`http://localhost/regnars/api/postData.php?role=${role}&id=${id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -112,9 +115,18 @@ function Add() {
       </div>
       Task creation
       <form className="box">
-        <Input type="text" id="title" placeholder="Title"/>
-        <Input type="text" id="description" placeholder="Description"/>
-        <Input type="date" id="date"/>
+        <div className='inputBox'>
+          <input className='input' type="title" id="title"></input>
+          <p className='errorMsg' id={"titleError"}></p>
+        </div>
+        <div className='inputBox'>
+          <input className='input' type="description" id="description"></input>
+          <p className='errorMsg' id={"descriptionError"}></p>
+        </div>
+        <div className='inputBox'>
+          <input className='input' type="date" id="date"></input>
+          <p className='errorMsg' id={"dateError"}></p>
+        </div>
         <button type="button" className="submit" onClick={sendDataToPHP}>
           Submit Data
         </button>

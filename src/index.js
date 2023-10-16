@@ -6,7 +6,8 @@ import {
   Task,
   Login,
   Register,
-  Header
+  Header,
+  Logout
 } from "./components"
 import {BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
 
@@ -21,7 +22,9 @@ root.render(
         <Route path="/add" element={ <Add/>}/> 
         <Route path="/task" element={ <Task/>}/> 
         <Route path="/login" element={ <Login/>}/> 
+        <Route path="/logout" element={ <Logout/>}/>
         <Route path="/register" element={ <Register/>}/> 
+   
     </Routes>
     </div>
   </Router>

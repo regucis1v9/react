@@ -6,6 +6,14 @@ function Header() {
   const isHome = location.pathname === '/';
   const isAdd = location.pathname === '/add';
 
+  const localRole = localStorage.getItem('role');
+  let text = 'Log in'
+  let redirect = 'http://localhost:3000/login'
+  if(localRole != ''){
+    text = 'Log out'
+    redirect = 'http://localhost:3000/logout'
+  }
+
   return (
     <div className="header">
       <div className="headerButtons">
@@ -17,8 +25,8 @@ function Header() {
         </a>
       </div>
       <div className="loginButtonBox">
-        <a className="headerButton" href="http://localhost:3000/login">
-          Login
+        <a className="headerButton" href={redirect}>
+          {text}
         </a>
       </div>
     </div>

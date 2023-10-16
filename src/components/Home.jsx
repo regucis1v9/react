@@ -3,13 +3,16 @@ import { useState, useEffect}  from 'react';
 
 function Home(){
 
+
     const [data, setData] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10); // Initialize with a default value
     const [totalPages, setTotalPages] = useState(1); 
-
+    
+    const localRole = localStorage.getItem('role');
+    const localID = localStorage.getItem('id');
     useEffect(() => {
-        fetch('http://localhost/regnars/api/get.php')
+        fetch(`http://localhost/regnars/api/get.php?id=${localID}&role=${localRole}`)
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.log('Error fetching data:', error))
