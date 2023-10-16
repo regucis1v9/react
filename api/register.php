@@ -22,12 +22,12 @@ class LoginHandler extends DB {
             $password = strip_tags($decodedData['password']);
 
             // Hash the password using a strong hashing algorithm (e.g., bcrypt)
-            // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             // You can perform additional validation and security checks here
             
             // Example SQL query to insert data into a users table
-            $sql = "INSERT INTO `users`(`username`, `password`, `role`) VALUES ('$username','$password','user')";
+            $sql = "INSERT INTO `users`(`username`, `password`, `role`) VALUES ('$username','$hashedPassword','user')";
 
             $result = $this->conn->query($sql);
 

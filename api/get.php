@@ -8,9 +8,17 @@ header('Content-Type: application/json');
 
 class sendData extends DB {
     public function selectTask() {
-        
-        $sql = "SELECT * FROM `tasks`";
-        $result = $this->conn->query($sql);
+    
+            $id = $_GET['id'];
+            $role = $_GET['role'];
+            
+            if($role == 'admin'){
+                $sql = "SELECT * FROM `tasks`";
+            }else{
+                $sql = "SELECT * FROM `tasks` WHERE `userID` = $id";
+            }
+            $result = $this->conn->query($sql);
+
 
         if ($result->num_rows > 0) {
             $tasks = array();

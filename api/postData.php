@@ -22,8 +22,10 @@ class DataHandler extends DB {
             $description = strip_tags($decodedData['description']);
             $date = strip_tags($decodedData['date']);
 
+            $userID = $_GET['id'];
 
-            $sql = "INSERT INTO `tasks`(`title`, `description`, `due_date`, `status`) VALUES ('$title','$description','$date','no')";
+
+            $sql = "INSERT INTO `tasks`(`title`, `description`, `due_date`, `status`, `userID`) VALUES ('$title','$description','$date','no', '$userID')";
 
             $result = $this->conn->query($sql);
 
