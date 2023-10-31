@@ -13,11 +13,9 @@ function Add() {
   const sendDataToPHP = async () => {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
-    let dateInput = document.getElementById('date').value;
 
     let titleError = document.getElementById('titleError');
     let descriptionError = document.getElementById('descriptionError');
-    let dateError = document.getElementById('dateError');
 
     // Function to check for HTML-like tags
     const containsHTMLTags = (text) => /<.*>/g.test(text);
@@ -42,32 +40,13 @@ function Add() {
       descriptionError.textContent = '';
     }
 
-    // Check if date is empty
-    if (dateInput !== '') {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0); // Set time to midnight (00:00:00)
-      
-      const inputDate = new Date(dateInput);
-      inputDate.setHours(0, 0, 0, 0); // Set time to midnight (00:00:00)
-
-      if (inputDate >= today) {
-        dateError.textContent = '';
-      } else {
-        dateError.textContent = 'Date must be greater than or equal to today';
-        return; // Stop further processing if the date is invalid
-      }
-    } else {
-      dateError.textContent = 'Fill out this field';
-      return; // Stop further processing if the date is empty
-    }
 
     // Continue with the rest of your code to send data if all validations pass
     try {
-      if (title !== '' && description !== '' && dateInput !== '') {
+      if (title !== '' && description !== '') {
         const data = {
           title,
           description,
-          date: dateInput,
         };
 
         const role = localStorage.getItem('role');
@@ -89,8 +68,6 @@ function Add() {
           title.value = '';
           let description = document.getElementById('description');
           description.value = '';
-          let date = document.getElementById('date');
-          date.value = '';
           const overlay = document.getElementById('overlay');
           overlay.classList.toggle('none');
           const alert = document.getElementById('alert');
@@ -116,19 +93,15 @@ function Add() {
       Task creation
       <form className="box">
         <div className='inputBox'>
-          <input className='input' type="title" id="title"></input>
+          <input className='input' type="text" id="title" placeholder='Your title'></input>
           <p className='errorMsg' id={"titleError"}></p>
         </div>
         <div className='inputBox'>
-          <input className='input' type="description" id="description"></input>
+          <textarea className='input2'  id="description" placeholder='Write your blog here'></textarea>
           <p className='errorMsg' id={"descriptionError"}></p>
         </div>
-        <div className='inputBox'>
-          <input className='input' type="date" id="date"></input>
-          <p className='errorMsg' id={"dateError"}></p>
-        </div>
         <button type="button" className="submit" onClick={sendDataToPHP}>
-          Submit Data
+          Create your blog
         </button>
       </form>
     </div>

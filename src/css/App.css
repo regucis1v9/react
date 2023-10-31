@@ -22,8 +22,7 @@ font-family: 'Sofia Sans', sans-serif;
 .box{
   margin-top:15px;
   background-color: #21242b;
-  width:80vw;
-  max-width: 600px;
+  width:90vw;
   height:70vh;
   border-radius: 10px;
   display:flex;
@@ -31,6 +30,9 @@ font-family: 'Sofia Sans', sans-serif;
   justify-content: space-evenly;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.36) 0px -12px 30px, rgba(0, 0, 0, 0.36) 0px 4px 6px, rgba(0, 0, 0, 0.36) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.max600{
+  max-width: 600px;
 }
 .input{
   border:none;
@@ -42,6 +44,19 @@ font-family: 'Sofia Sans', sans-serif;
   max-width: 400px;
   min-width: 200px;
   color:white;
+  text-align: center;
+}
+.input2{
+    border: solid #61dafbaa 2px;
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: calc(20px + 2vmin);
+    width: 70vw;
+    height: 260px;
+    background-color: #21242b;
+    resize: none;
 }
 .inputBox{
   width:300px;
@@ -70,6 +85,7 @@ font-family: 'Sofia Sans', sans-serif;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 .taskBox{
+  margin-top:50px;
   width: 80vw;
   min-height: 80vh;
   display: flex;
@@ -162,7 +178,11 @@ th{
   font-size:calc(33px + 2vmin) ;
   text-align: center;
   padding:10px;
+  border:none;
   border-bottom: 5px solid #61dafbaa;
+  color:white;
+  background-color: transparent;
+  outline:none;
 }
 .dueDate{
   width:100%;
@@ -336,4 +356,18 @@ textarea{
 }
 .none{
   display:none;
+}
+.blogBox{
+  width:80vw;
+  height:400px;
+  border:solid #61dafb 3px;
+  border-radius:10px;
+  background-color: #21242b;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.36) 0px -12px 30px, rgba(0, 0, 0, 0.36) 0px 4px 6px, rgba(0, 0, 0, 0.36) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.blogTitle{
+
+}
+.blogDesc{
+  
 }

@@ -17,15 +17,10 @@ class DataHandler extends DB {
     public function processData() {
         $decodedData = json_decode($this->rawData, true);
 
-        if ($decodedData !== null && isset($decodedData['title'], $decodedData['description'], $decodedData['date'])) {
+        if ($decodedData !== null && isset($decodedData['title'], $decodedData['description'])) {
             $title = strip_tags($decodedData['title']);
             $description = strip_tags($decodedData['description']);
-            $date = strip_tags($decodedData['date']);
-
-            $userID = $_GET['id'];
-
-
-            $sql = "INSERT INTO `tasks`(`title`, `description`, `due_date`, `status`, `userID`) VALUES ('$title','$description','$date','no', '$userID')";
+            $sql = "INSERT INTO `tasks`(`title`, `description`) VALUES ('$title','$description')";
 
             $result = $this->conn->query($sql);
 

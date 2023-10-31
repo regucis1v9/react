@@ -97,10 +97,11 @@ function Login() {
         <button className='closeButton' onClick={closeAlert}>OK</button>
       </div>
       LOGIN
-      <form className="box">
-        <div className='inputBox'>
+      <form className="box max600">
+        <div className='inputBox '>
           <input
             className='input'
+            placeholder='Username'
             type="text"
             id="username"
             value={username}
@@ -113,6 +114,7 @@ function Login() {
             className='input'
             type="password"
             id="password"
+            placeholder='Username'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></input>

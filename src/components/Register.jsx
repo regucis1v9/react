@@ -54,7 +54,7 @@ function Register() {
   return (
     <div className="main">
       Register
-      <form className="box">
+      <form className="box max600">
         <Input
           type="text"
           id="username"

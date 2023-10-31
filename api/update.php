@@ -17,13 +17,12 @@ class DataHandler extends DB {
     public function processData() {
         $decodedData = json_decode($this->rawData, true);
 
-        if ($decodedData !== null && isset($decodedData['description'], $decodedData['dueDate'], $decodedData['status'])) {
+        if ($decodedData !== null && isset($decodedData['description'])) {
             $id = $_GET['id'];
             $description = $decodedData['description'];
-            $date = $decodedData['dueDate'];
-            $status = $decodedData['status'];
+            $title = $decodedData['title'];
 
-            $sql = "UPDATE `tasks` SET `description`='$description', `due_date`='$date', `status`='$status' WHERE `id` = $id";
+            $sql = "UPDATE `tasks` SET `description`='$description',`title`='$title'  WHERE `id` = $id";
 
             if ($this->conn->query($sql) === true) {
                 echo json_encode(["message" => "Record updated successfully"]);
