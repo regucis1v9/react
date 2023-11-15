@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header("Access-Control-Allow-Credentials: true");
 header('Content-Type: application/json');
 
-class LoginHandler extends DB {
+class Register extends DB {
     private $rawData;
 
     public function __construct() {
@@ -14,27 +14,44 @@ class LoginHandler extends DB {
         $this->rawData = file_get_contents('php://input');
     }
 
-    public function processLogin() {
+    public function registerUser() {
         $decodedData = json_decode($this->rawData, true);
 
-        if ($decodedData !== null && isset($decodedData['username'], $decodedData['password'])) {
+        if ($decodedData !== null && isset($decodedData['username'], $decodedData['password'], $decodedData['email'])) {
             $username = strip_tags($decodedData['username']);
             $password = strip_tags($decodedData['password']);
+            $email = strip_tags($decodedData['email']);
+
+            // Validate email
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo json_encode(["message" => "Invalid email format"]);
+                return;
+            }
 
             // Hash the password using a strong hashing algorithm (e.g., bcrypt)
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-            // You can perform additional validation and security checks here
-            
-            // Example SQL query to insert data into a users table
-            $sql = "INSERT INTO `users`(`username`, `password`, `role`) VALUES ('$username','$hashedPassword','user')";
+            // Check if the username already exists
+            $checkUsernameQuery = "SELECT * FROM `users` WHERE username = '$username'";
+            $checkUsernameResult = $this->conn->query($checkUsernameQuery);
 
-            $result = $this->conn->query($sql);
+            // Check if the email already exists
+            $checkEmailQuery = "SELECT * FROM `users` WHERE email = '$email'";
+            $checkEmailResult = $this->conn->query($checkEmailQuery);
 
-            if ($result === true) {
-                echo json_encode(["message" => "Registration successful"]);
+            if ($checkUsernameResult->num_rows > 0) {
+                echo json_encode(["message" => "Username already exists"]);
+            } else if ($checkEmailResult->num_rows > 0) {
+                echo json_encode(["message" => "Email already exists"]);
             } else {
-                echo json_encode(["message" => "Error: " . $this->conn->error]);
+                $insertQuery = "INSERT INTO `users`(`username`, `email`, `password`) VALUES ('$username', '$email', '$hashedPassword')";
+                $insertResult = $this->conn->query($insertQuery);
+
+                if ($insertResult === true) {
+                    echo json_encode(["message" => "Registration successful"]);
+                } else {
+                    echo json_encode(["message" => "Error: " . $this->conn->error]);
+                }
             }
         } else {
             echo json_encode(["message" => "Invalid data received"]);
@@ -43,8 +60,8 @@ class LoginHandler extends DB {
 }
 
 // Create an instance of the LoginHandler class
-$loginHandler = new LoginHandler();
+$Register = new Register();
 
 // Process the raw POST data
-$loginHandler->processLogin();
+$Register->registerUser();
 ?>

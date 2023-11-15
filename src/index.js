@@ -1,32 +1,22 @@
+// App.js or wherever your router setup is
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  Add,
-  Home,
-  Task,
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { 
   Login,
   Register,
-  Header,
-  Logout
-} from "./components"
-import {BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
+  PasswordReset,
+  Profile,
+  } from './components';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
   <Router>
-    <div>
-    <Header />
     <Routes>
-        <Route path="/" element={ <Home/>}/>
-        <Route path="/add" element={ <Add/>}/> 
-        <Route path="/task" element={ <Task/>}/> 
-        <Route path="/login" element={ <Login/>}/> 
-        <Route path="/logout" element={ <Logout/>}/>
-        <Route path="/register" element={ <Register/>}/> 
-   
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/reset" element={<PasswordReset />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
-    </div>
   </Router>
 );
-
